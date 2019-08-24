@@ -10,7 +10,7 @@ lw $t2, b
 lw $t3, r
 
 ifBgtz: #(B > 0) ?
-	bgtz $t2, checkA
+	bgtz $t2, ifAgtz
 
 else:
 	addi $t3, $t3, 3
