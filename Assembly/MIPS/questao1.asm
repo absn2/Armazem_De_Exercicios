@@ -20,7 +20,7 @@ else:
 ifAgtz: #(A > 0) ?
 	bgtz $t1, addOne
 
-else:
+else2:
 	addi $t3, $t3, 2
 	sw $t3, r
 	j exit

@@ -1,8 +1,8 @@
 .data
 
-a: .word 5
-b: .word 4
-c: .word 3
+a: .word 10
+b: .word 14
+c: .word 8
 result: .word 0 # nao mexer
 
 .text
@@ -20,25 +20,13 @@ crtVar: # Criando as variaves para checar se é possivel formar um triangulo com
 	abs $t5,$t5 # modulo da subtracao
 	abs $t6,$t6
 	abs $t7,$t7
-checkSum: # vendo se se um dos lados é maior que a soma dos outros dois
-	line1: 
-	bge $s1,$t3, line2 # se um lado é maior que a soma dos outros dois, então cheque se o outro lado bate nas config.
-	addi $t8, $s1,0 # se um lado é menor, armazenamos os valores dele e vemos se continua sendo apto.
-	addi $t9,$t7,0
-	j checkSub
-	line2:
-	bge $s2,$t2, line3 #se o lado continua sendo maior entao vejo o proximo.
-	addi $t8, $s2,0
-	addi $t9,$t6,0
-	j checkSub
-	line3:
-	bge $s3,$t1, exit # se continuar sendo maior, então pule pro final.
-	addi $t8, $s3,0
-	addi $t9,$t5,0
-	j checkSub
-checkSub: # vendo se um dos lados é maior que a subtracao (em modulo) dos outros dois.
-	bgt $t8,$t9,calcularTriangulo
-	j exit
+checkTriangulo: #checa se é possivel criar um triangulo com os lados dados inicialmente.
+	bge $s1,$t3, exit # se um lado é maior que a soma dos outros dois, entao ele nao bate nas especificacoes.
+	bge $s2,$t2, exit 
+	bge $s3,$t1, exit
+	blt $s1,$t7, exit # se um lado é menor que o modulo da subtracao entre dois lados, entao ele nao bate nas especificaoes
+	blt $s2,$t6, exit
+	blt $s3,$t5,exit
 calcularTriangulo: # vendo qual formato de triangulo ele se encaixa
 	beq $s1,$s2, equilatero #vai checar se ele vai ser um triangulo equilatero
 	beq $s1,$s3, isoceles #se um deles for igual é isocoles
