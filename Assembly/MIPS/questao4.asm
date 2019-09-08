@@ -21,12 +21,12 @@ crtVar: # Criando as variaves para checar se é possivel formar um triangulo com
 	abs $t6,$t6
 	abs $t7,$t7
 checkTriangulo: #checa se é possivel criar um triangulo com os lados dados inicialmente.
-	bge $s1,$t3, exit # se um lado é maior que a soma dos outros dois, entao ele nao bate nas especificacoes.
+	bge $s1,$t3, exit # se um lado é maior ou igual que a soma dos outros dois, entao ele nao bate nas especificacoes.
 	bge $s2,$t2, exit 
 	bge $s3,$t1, exit
-	blt $s1,$t7, exit # se um lado é menor que o modulo da subtracao entre dois lados, entao ele nao bate nas especificaoes
-	blt $s2,$t6, exit
-	blt $s3,$t5,exit
+	ble  $s1,$t7, exit # se um lado é menor ou igual que o modulo da subtracao entre outros dois lados, entao ele nao bate nas especificaoes
+	ble $s2,$t6, exit
+	ble $s3,$t5,exit
 calcularTriangulo: # vendo qual formato de triangulo ele se encaixa
 	beq $s1,$s2, equilatero #vai checar se ele vai ser um triangulo equilatero
 	beq $s1,$s3, isoceles #se um deles for igual é isocoles

@@ -1,6 +1,6 @@
 .data
-	a: .word 0
-	b: .word 4
+	a: .word 2
+	b: .word 10
 .text
 
 	
@@ -10,8 +10,6 @@
 
 		lw $a0,a
 		lw $a1,b
-		
-
 		jal fn #function's caller
 		j Exit
 	
@@ -32,7 +30,7 @@
 		
 	func:	
 		addi $sp,$sp,-12
-		sw $ra, 8($sp) #salva endereço de retorno na pilha
+		sw $ra, 8($sp) #salva endereco de retorno na pilha
 		sw $a0, 4($sp) #salva argumento na pilha
 		sw $a1, 0($sp) #salva argumento na pilha
 		bne $a0,$a1, Aux
@@ -44,9 +42,9 @@
 		lw $a0, 4($sp) #pega arg da pilha
 		lw $a1, 0($sp)	#pega arg da pilha
 		
-		addi $sp,$sp,12 #sobe na pilha para alcançar informacoes armazenadas anteriormente
+		addi $sp,$sp,12 #sobe na pilha para alcancar informacoes armazenadas anteriormente
 		add $v1,$v1,$a1
 		Fim:	jr $ra
 		
 	
-	Exit:
+	Exit: # resultado final armazenado no registrador $v1
