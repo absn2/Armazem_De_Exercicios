@@ -47,6 +47,22 @@
     background-color: #C8C6FA;
   }
   
+  .illustration img {
+    width: 100%;
+    display: block;
+  }
+
+  .header {
+    height: auto;
+    justify-content: inherit;
+    align-items: inherit;
+  }
+  
+  .photo img {
+    width: 100%;
+    display: block;
+  }
+  
   /* Mobile Styles */
   @media only screen and (max-width: 400px) {
     body {
@@ -80,9 +96,6 @@
       .feature-2,
       .feature-3 {
         width: 33.3%;
-      }
-      .header {
-        height: 400px;
       }
 
       .sign-up {
