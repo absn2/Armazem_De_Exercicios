@@ -1,0 +1,50 @@
+--RESPOSTAS--
+
+1) It : Permite obter a última operação feita. Let : Armazena uma expressão a uma varíavel.
+
+2) Feito.
+
+3) double 2 3 = Aplicamos paramêtros a mais para a função, sendo que ela originalmente só aceita um valor Integer.
+double square = Espera que se passe um valor como paramêtro, como não passamos nenhum, lança uma exceção.
+2 double = O compilador não reconhece a operação feita na linha, pois não tratamos o valor "2" com outro resultado, pois também o double não está sendo aplicado a nada.
+
+4)a)squareDouble :: Integer -> Integer
+squareDouble x = square (double x)
+b)doubleSquare :: Integer -> Integer
+doubleSquare x = double (square x)
+
+5)a) 
+    threeEqual (2+3) 5 (11 `div` 2) = TRUE
+    mystery (2+4) 5 (11 `div` 2) = TRUE
+    threeDifferent (2+4) 5 (11 `div` 2) = FALSE
+    fourEqual (2+3) 5 (11 `div` 2) (21 `mod` 11) = FALSE
+b)
+    max (3-2) (3*8) = 24
+    maxThree (4+5) (2*6) (100 `div` 7) = 14
+c) 
+    min :: Int -> Int -> Int
+    min x y
+        = if x <= y then x else y 
+
+    minThree :: Int -> Int -> Int -> Int
+    minThree x y z
+        = if (x <= y && x <= z) then x else if (y <= z) then y else z
+d)
+    charToNum :: Char -> Int
+    charToNum ch
+        = if (('0' <= ch) && (ch <= '9')) then (ord ch - ord '0') else 0 
+e)
+    averageThree :: Integer -> Integer -> Integer -> Float 
+    averageThree x y z = fromIntegral(x+y+z) / 3
+
+    howManyAboveAverage :: Integer -> Integer -> Integer -> Integer 
+    howManyAboveAverage x y z 
+        | (x == y) && (y == z) = 0
+        | (fromIntegral x > averageThree x y z) && (fromIntegral y <= averageThree x y z) && (fromIntegral z <= averageThree x y z) = 1
+        | (fromIntegral x > averageThree x y z) && (fromIntegral y > averageThree x y z) && (fromIntegral z <= averageThree x y z) = 2
+        | (fromIntegral x > averageThree x y z) && (fromIntegral y > averageThree x y z) && (fromIntegral z > averageThree x y z) = 3
+        | (fromIntegral x <= averageThree x y z) && (fromIntegral y > averageThree x y z) && (fromIntegral z <= averageThree x y z) = 1
+        | (fromIntegral x <= averageThree x y z) && (fromIntegral y > averageThree x y z) && (fromIntegral z > averageThree x y z) = 2
+        | (fromIntegral x <= averageThree x y z) && (fromIntegral y <= averageThree x y z) && (fromIntegral z > averageThree x y z) = 1
+        | otherwise = 0
+
