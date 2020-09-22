@@ -1,0 +1,102 @@
+----RESPOSTAS----
+
+1)
+isLowerCase :: Char -> Bool
+isLowerCase ch = if (ch >= 'a' && ch <= 'z') then True else False
+
+toUpperCase :: Char -> Char
+toUpperCase c = chr (ord c - offset)
+    where
+    offset = abs(ord 'A' - ord 'a')
+
+
+paraMaior :: String -> String
+paraMaior x = [toUpperCase ch | ch <- x, isLowerCase ch]
+
+2)
+mmd :: Integer -> [Integer]
+mmd x = [n | n <- [1..x], x `mod` n == 0]
+
+divisores :: Integer -> [Integer]
+divisores 0 = []
+divisores 1 = [1]
+divisores x = mmd x
+
+isPrime :: Integer -> Bool
+isPrime x = if length(divisores x) == 2 then True else False
+
+3)
+menorLista :: [Int] -> Int
+menorLista [] = maxBound
+menorLista (x:xs) = min x (menorLista xs)
+
+4)
+fib :: Integer -> Integer
+fib n 
+    | n <= 0 = 0
+    | n == 1 = 1
+    | otherwise = fib (n-2) + fib (n-1)
+
+fibList :: Integer -> [(Integer,Integer)]
+fibList n = [ (x,fib x) | x <- [0..(n-2)] ]
+
+fibResultTable :: [(Integer,Integer)] -> String
+fibResultTable [] = "\n"
+fibResultTable (x:xs) = show(fst(x)) ++ "   " ++ show(snd(x)) ++ "\n" ++ fibResultTable xs
+
+imprimeTabela :: Integer -> String
+imprimeTabela n = cabecalho ++ fibResultTable (fibList n)
+
+fibTable :: Integer -> IO()
+fibTable n = putStr (imprimeTabela n)
+
+5)
+measure :: [a] -> Int
+measure [] = -1
+measure x = length(x)
+
+6)
+takeFinal :: Int -> [a] -> [a]
+takeFinal n x = drop (length x - n) x
+
+7)
+remove :: Int -> [a] -> [a]
+remove n x = take n x ++ drop (n+1) x
+
+8)
+fstInt :: [Integer] -> Integer
+fstInt [] = 0
+fstInt (x:_) = x
+
+fstInt' :: [Integer] -> Integer
+fstInt' x = head x
+
+9)
+addtion :: [Integer] -> Integer
+addtion [] = 0
+addtion [x] = x
+addtion (x:y:xs) = x+y
+
+addtion' :: [Integer] -> Integer
+addtion' x = sum (take 2 x)
+
+10)
+produto :: [Integer] -> Integer
+produto [] = 1
+produto (x:xs) = x * produto xs
+
+11)
+unique :: [Integer] -> [Integer]
+unique [] = []
+unique [x] = [x]
+unique x = [ y | y <- x, isUnique (delete y x) y]
+    where
+    isUnique [] y = True
+    isUnique (x:xs) y = if x == y then False else isUnique xs y
+
+
+12)
+isCrescente :: [Integer] -> Bool
+isCrescente [] = True
+isCrescente (_:[]) = True
+isCrescente (x:y:xs) = x <= y && isCrescente (y:xs)
